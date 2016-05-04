@@ -5,8 +5,9 @@ class Product extends Admin {
 
 	public function index()
 	{
-		redirect('/admin/product/input','refresh');
-		dd($this->products_model->get_all());
+		//redirect('/admin/product/input','refresh');
+		$rs = $this->products_model->get_all();
+		$this->twig->display("admin/product/index",compact("rs"));
 	}
 
 	public function input($id=null){
@@ -22,18 +23,37 @@ class Product extends Admin {
 				"special_price"   => $this->input->post('special_price'),
 				"views"           => $this->input->post('views'),
 			];
-			if($this->products_model->insert($options)){
-				$this->session->set_flashdata('alert_success', 'Đã lưu thành công');
+			if(!$id){
+				if($this->products_model->insert($options)){
+					$this->session->set_flashdata('alert_success', 'Đã lưu thành công');
+				}else{
+					$this->session->set_flashdata('alert_error', 'Gặp lỗi');
+				}
 			}else{
-				$this->session->set_flashdata('alert_error', 'Gặp lỗi');
+				$this->products_model->where(["id"=>$id]);
+				if($this->products_model->update($options)){
+					$this->session->set_flashdata('alert_success', 'Đã lưu thành công');
+				}else{
+					$this->session->set_flashdata('alert_error', 'Gặp lỗi');
+				}
 			}
 			redirect('/admin/product','refresh');
 		}
-		$rs = $this->products_model->get($id);
+		if($id){
+			$rs = $this->products_model->get($id);
+		}
 		$this->twig->display("admin/product/input",compact("rs"));
 	}
 
+	public function delete($id){
+		if($this->products_model->delete($id)){
+			$this->session->set_flashdata('alert_success', 'Đã xóa thành công');
+		}else{
+			$this->session->set_flashdata('alert_error', 'Không xóa được');
+		}
+		redirect('/admin/product','refresh');
 
+	}
 }
 
 /* End of file Product.php */

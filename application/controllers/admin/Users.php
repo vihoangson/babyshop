@@ -11,8 +11,6 @@ class Users extends Admin {
 
 		if($this->input->post()){
 			$username = $this->input->post("username");
-			//12345
-			//827ccb0eea8a706c4c34a16891f84e7b
 			$password = md5($this->input->post("password"));
 			$this->load->model('users_model');
 			$rs = $this->users_model->where(["name"=>$username,"password"=>$password])->get();

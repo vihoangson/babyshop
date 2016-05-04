@@ -1,0 +1,55 @@
+{% extends 'admin.twig' %}
+
+{% block title_page %}
+    Chào mừng bạn tới shop
+{% endblock %}
+
+
+{% block content_page %}
+<a href="/admin/product/input" class="btn btn-primary"><i class="fa fa-plus"></i> Add product</a>
+	<table class="table table-hover">
+		<tr>
+			<th>12l</th>
+			<th>12l</th>
+			<th>12l</th>
+			<th>12l</th>
+			<th>12l</th>
+			<th>12l</th>
+			<th>12l</th>
+			<th>12l</th>
+			<th>12l</th>
+			<th>12l</th>
+		</tr>
+		{% for item in rs %}
+		<tr>
+			<td>{{item.name}}</td>
+			<td>{{item.id}}</td>
+			<td>{{item.name}}</td>
+			<td>{{item.category}}</td>
+			<td>{{item.price}}</td>
+			<td>{{item.image}}</td>
+			<td>{{item.active}}</td>
+			<td>{{item.special_content}}</td>
+			<td>{{item.special_price}}</td>
+			<td>{{item.views}}</td>
+			<td>
+			<a href="/admin/product/input/{{item.id}}">Edit</a>
+			<a href="/admin/product/delete/{{item.id}}">Delete</a>
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" href="/assets/bower_components/summernote/dist/summernote.css">
+{% endblock %}
+
+{% block custom_js %}
+<script src="/assets/bower_components/summernote/dist/summernote.js"></script>
+<script>
+	$("#summernote").summernote();
+	$("form").submit(function(event) {
+		$("[name='description']").html($("#summernote").summernote("code"));
+	});
+</script>
+{% endblock %}
