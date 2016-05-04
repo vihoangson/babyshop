@@ -1,0 +1,21 @@
+{
+  "name": "khoitao",
+  "homepage": "https://github.com/vihoangson/babyshop",
+  "authors": [
+    "Son Vi Hoang <hoang_son@lampart-vn.com>"
+  ],
+  "description": "taomoi",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "summernote": "^0.8.1"
+  }
+}
