@@ -1,0 +1,51 @@
+{% extends 'admin.twig' %}
+
+{% block title_page %}
+    Chào mừng bạn tới shop
+{% endblock %}
+
+
+{% block content_page %}
+
+<form action="" method="POST" role="form">
+	<legend>Form title</legend>
+	<div class="form-group">
+		<label for="">name</label>
+		<input name="name" type="text" class="form-control" id="" placeholder="Input field">
+	</div>
+	<div class="form-group">
+		<label for="">description</label>
+		<input name="description" type="text" class="form-control" id="" placeholder="Input field">
+	</div>
+	<div class="form-group">
+		<label for="">category</label>
+		<input name="category" type="text" class="form-control" id="" placeholder="Input field">
+	</div>
+	<div class="form-group">
+		<label for="">price</label>
+		<input name="price" type="text" class="form-control" id="" placeholder="Input field">
+	</div>
+	<div class="form-group">
+		<label for="">image</label>
+		<input name="image" type="text" class="form-control" id="" placeholder="Input field">
+	</div>
+	<div class="form-group">
+		<label for="">active</label>
+		<input name="active" type="text" class="form-control" id="" placeholder="Input field">
+	</div>
+	<div class="form-group">
+		<label for="">special_content</label>
+		<input name="special_content" type="text" class="form-control" id="" placeholder="Input field">
+	</div>
+	<div class="form-group">
+		<label for="">special_price</label>
+		<input name="special_price" type="text" class="form-control" id="" placeholder="Input field">
+	</div>
+	<div class="form-group">
+		<label for="">views</label>
+		<input name="views" type="text" class="form-control" id="" placeholder="Input field">
+	</div>
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}
