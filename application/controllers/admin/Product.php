@@ -3,6 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Product extends Admin {
 
+	public function __construct(){
+		parent::__construct();
+	}
+
 	public function index()
 	{
 		//redirect('/admin/product/input','refresh');
@@ -12,12 +16,31 @@ class Product extends Admin {
 
 	public function input($id=null){
 		if($this->input->post()){
+			$config['upload_path'] = FCPATH.'assets/uploads/';
+			$config['allowed_types'] = 'gif|jpg|png';
+			$config['max_size']  = '100000';
+			$config['max_width']  = '10000';
+			$config['max_height']  = '10000';
+			
+			$this->load->library('upload', $config);
+			
+			if ( ! $this->upload->do_upload("image")){
+				$error = array('error' => $this->upload->display_errors());
+			}
+			else{
+				$data = array('upload_data' => $this->upload->data());
+				$this->load->library('my_resize');
+				$this->my_resize->resize($data["upload_data"]["full_path"],600,600);
+				$fullpath = $data["upload_data"]["file_path"].$data["upload_data"]["file_name"];
+				$image_name = preg_replace("/(.+)\/assets/", "/assets", $fullpath);
+			}
+
 			$options = [
 				"name"            => $this->input->post('name'),
 				"description"     => $this->input->post('description'),
 				"category"        => $this->input->post('category'),
 				"price"           => $this->input->post('price'),
-				"image"           => $this->input->post('image'),
+				"image"           => $image_name,
 				"active"          => $this->input->post('active'),
 				"special_content" => $this->input->post('special_content'),
 				"special_price"   => $this->input->post('special_price'),
@@ -46,13 +69,17 @@ class Product extends Admin {
 	}
 
 	public function delete($id){
+		$product = $this->products_model->get($id);
+		if($product->image){
+			$product->image = FCPATH.ltrim($product->image,"/");
+			unlink($product->image);
+		}
 		if($this->products_model->delete($id)){
 			$this->session->set_flashdata('alert_success', 'Đã xóa thành công');
 		}else{
 			$this->session->set_flashdata('alert_error', 'Không xóa được');
 		}
 		redirect('/admin/product','refresh');
-
 	}
 }
 

@@ -7,7 +7,7 @@
 
 {% block content_page %}
 
-<form action="" method="POST" role="form">
+<form action="" method="POST" role="form" enctype="multipart/form-data">
 	<legend>Form title</legend>
 
 	<div class="form-group">
@@ -29,7 +29,7 @@
 	</div>
 	<div class="form-group">
 		<label for="">image</label>
-		<input value="{{rs.image}}" name="image" type="text" class="form-control" id="" placeholder="Input field">
+		<input name="image" type="file" class="form-control" id="" placeholder="Input field">
 	</div>
 	<div class="form-group">
 		<label for="">active</label>
