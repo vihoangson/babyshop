@@ -1,0 +1,23 @@
+{% extends 'app.twig' %}
+
+
+{% block title_page %}
+    Chào mừng bạn tới shop
+{% endblock %}
+
+
+{% block content_page %}
+	{% for item in rs %}
+	    {{item}}
+	{% endfor %}
+{% endblock %}
+
+
+{% block custom_css %}
+
+{% endblock %}
+
+
+{% block custom_js %}
+
+{% endblock %}
