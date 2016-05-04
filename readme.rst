@@ -1,4 +1,12 @@
 ###################
+Hướng dẫn setup
+###################
+1./ Composer install
+2./ Import DB
+3./ Cấu hình lại DB
+
+
+###################
 What is CodeIgniter
 ###################
 
