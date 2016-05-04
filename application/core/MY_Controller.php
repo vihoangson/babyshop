@@ -19,9 +19,8 @@ class Admin extends MY_Controller {
     public function __construct()
     {
         parent::__construct();
-
         if (empty($this->session->userdata['admin_user_id']) && !in_array('login', $this->uri->segment_array())) {
-            redirect('admin/users/login');
+            redirect('/admin/users/login','auto');
         }
     }
 }

@@ -134,6 +134,7 @@ class Twig
 	public function display($view, $params = [])
 	{
 		$CI =& get_instance();
+		$this->addGlobal("session",$_SESSION);
 		$CI->output->set_output($this->render($view, $params));
 	}
 
