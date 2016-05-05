@@ -42,9 +42,6 @@ class Product extends Admin {
 			if($this->input->post('views')){
 				$options["views"] = $this->input->post('views');
 			}
-			// if($image_name){
-			// 	$options["image"] = $image_name;
-			// }
 
 			if($options){
 				if(!$id){
@@ -64,6 +61,7 @@ class Product extends Admin {
 			}
 
 			//============ ============ ============  ============  ============  ============ 
+			// Sử lý upload hình ảnh
 			//
 			if($_FILES["image"]){
 				//============  ============ 
@@ -115,7 +113,9 @@ class Product extends Admin {
 				}
 				//
 				//============  ============ 
-			}			
+			}
+			// End sử lý upload hình ảnh
+			//============ ============  ============  ============ 
 			if($image_name){
 				$this->load->model('product_images_model');
 				foreach ($image_name as $key => $value) {
@@ -126,8 +126,10 @@ class Product extends Admin {
 					$this->product_images_model->insert($params);
 				}
 			}
-			redirect('/admin/product','refresh');
-		}
+			redirect('/admin/product/input/'.$id,'refresh');
+		} // End save post
+
+		//============ ============  ============  ============ 
 		if($id){
 			$rs = $this->products_model->with_product_images()->get($id);
 		}

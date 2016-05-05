@@ -1,9 +1,8 @@
 {% extends 'admincp.twig' %}
 
 {% block title_page %}
-	Chào mừng bạn tới shop
+	Nhập sản phẩm
 {% endblock %}
-
 
 {% block content_page %}
 		<div class="row wrapper border-bottom white-bg page-heading">
@@ -39,21 +38,14 @@
 										<form action="" method="POST" role="form" enctype="multipart/form-data">
 										<fieldset class="form-horizontal">
 											<div class="form-group"><label class="col-sm-2 control-label">Name:</label>
-												<div class="col-sm-10"><input type="text" name="name" class="form-control" placeholder="Product name"></div>
+												<div class="col-sm-10"><input type="text" name="name" class="form-control" placeholder="Product name"value="{{rs.name}}"></div>
 											</div>
 											<div class="form-group"><label class="col-sm-2 control-label">Price:</label>
-												<div class="col-sm-10"><input type="text" name="price" class="form-control" placeholder="$160.00"></div>
+												<div class="col-sm-10"><input type="text" name="price" class="form-control" placeholder="$160.00" value="{{rs.price}}"></div>
 											</div>
 											<div class="form-group"><label class="col-sm-2 control-label">Description:</label>
 												<div class="col-sm-10">
-													<div id="summernote">
-														<h3>Lorem Ipsum is simply</h3>
-														dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has been the industry's</strong> standard dummy text ever since the 1500s,
-														when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-														when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-														typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
-														<br/>
-													</div>
+													<div id="summernote">{{rs.description|raw}}</div>
 													<textarea name="description" class="hidden"></textarea>
 												</div>
 											</div>
@@ -183,6 +175,9 @@
 									<div class="panel-body">
 
 										<div class="table-responsive">
+											<form action="" method="POST" role="form" enctype="multipart/form-data" class="form_img">
+												<input name="image[]" type="file" class="form-control" id="product_imgs" placeholder="Input field" multiple>
+											</form>
 											<table class="table table-bordered table-stripped">
 												<thead>
 												<tr>
@@ -205,7 +200,7 @@
 														{% for key,item in rs.product_images %}
 															<tr>
 																<td>
-																	<img src="{{item.path_img}}">
+																	<img src="{{item.path_img}}" onError="this.src='http://placehold.it/100x100'">
 																</td>
 																<td>
 																	<input type="text" class="form-control" disabled value="{{item.path_img}}">
@@ -214,7 +209,7 @@
 																	<input type="text" class="form-control" value="{{key}}">
 																</td>
 																<td>
-																	<button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+																	<a data-id="{{item.id}}" class="btn btn-white delete-img"><i class="fa fa-trash"></i> </a>
 																</td>
 															</tr>
 														{% endfor %}
@@ -222,87 +217,55 @@
 												</tbody>
 											</table>
 										</div>
-										<form action="" method="POST" role="form" enctype="multipart/form-data" class="form_img">
-											<input name="image[]" type="file" class="form-control" id="product_imgs" placeholder="Input field" multiple>
-										</form>
 									</div>
 								</div>
 							</div>
 					</div>
 				</div>
 			</div>
-
 		</div>
-
-	
-
 {% endblock %}
 
 {% block custom_css %}
-<link rel="stylesheet" href="/assets/bower_components/summernote/dist/summernote.css">
-<link href="{{url_template_admin}}css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+	<link rel="stylesheet" href="/assets/bower_components/summernote/dist/summernote.css">
+	<link href="{{url_template_admin}}css/plugins/datapicker/datepicker3.css" rel="stylesheet">
 {% endblock %}
 
 {% block custom_js %}
+	<script src="/assets/bower_components/summernote/dist/summernote.js"></script>
+	<script src="{{url_template_admin}}js/plugins/datapicker/bootstrap-datepicker.js"></script>
+	<script>
 
-<script src="/assets/bower_components/summernote/dist/summernote.js"></script>
-<script src="{{url_template_admin}}js/plugins/datapicker/bootstrap-datepicker.js"></script>
-<script>
-	$("#product_imgs").change(function(event) {
-		$(this).parents("form").submit();
-	});
-	$("#summernote").summernote();	
-	$("form").submit(function(event) {
-		$("[name='description']").html($("#summernote").summernote("code"));
-	});
-	$('.input-group.date').datepicker({
-		todayBtn: "linked",
-		keyboardNavigation: false,
-		forceParse: false,
-		calendarWeeks: true,
-		autoclose: true
-	});
-</script>
+		$("#product_imgs").change(function(event) {
+			$(this).parents("form").submit();
+		});
+
+		$("#summernote").summernote();	
+
+		$("form").submit(function(event) {
+			$("[name='description']").html($("#summernote").summernote("code"));
+		});
+		$('.input-group.date').datepicker({
+			todayBtn: "linked",
+			keyboardNavigation: false,
+			forceParse: false,
+			calendarWeeks: true,
+			autoclose: true
+		});
+
+		$(".delete-img").click(function(event) {
+			this_selector =$(this);
+			id_img=$(this).data("id");
+			$.post('/ajax/ajax_products/delete_img', {id: id_img}, function(data, textStatus, xhr) {
+				json_data = JSON.parse(data);
+				if(json_data.status=="done"){
+					this_selector.parents("tr").remove();
+				}else{
+					alert("Error");
+				}
+			});
+		});
+
+
+	</script>
 {% endblock %}
-
-
-{#
-<form action="" method="POST" role="form" enctype="multipart/form-data" class="hidden">
-		<legend>Form title</legend>
-
-		<div class="form-group">
-			<label for="">name</label>
-			<input value="{{rs.name}}" name="name" type="text" class="form-control" id="" placeholder="Input field">
-		</div>
-		<div class="form-group">
-			<label for="">description</label>
-			<div id="summernote">{{rs.description|raw}}</div>
-			<textarea  name="description" style="display:none"></textarea>
-		</div>
-		<div class="form-group">
-			<label for="">category</label>
-			<input value="{{rs.category}}" name="category" type="text" class="form-control" id="" placeholder="Input field">
-		</div>
-		<div class="form-group">
-			<label for="">price</label>
-			<input value="{{rs.price}}" name="price" type="text" class="form-control" id="" placeholder="Input field">
-		</div>
-		<div class="form-group">
-			<label for="">image</label>
-			<input name="image" type="file" class="form-control" id="" placeholder="Input field">
-		</div>
-		<div class="form-group">
-			<label for="">active</label>
-			<input value="{{rs.active}}" name="active" type="text" class="form-control" id="" placeholder="Input field">
-		</div>
-		<div class="form-group">
-			<label for="">special_content</label>
-			<input value="{{rs.special_content}}" name="special_content" type="text" class="form-control" id="" placeholder="Input field">
-		</div>
-		<div class="form-group">
-			<label for="">special_price</label>
-			<input value="{{rs.special_price}}" name="special_price" type="text" class="form-control" id="" placeholder="Input field">
-		</div>
-		<button type="submit" class="btn btn-primary">Submit</button>
-	</form>
-#}

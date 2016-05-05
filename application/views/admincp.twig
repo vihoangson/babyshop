@@ -138,7 +138,7 @@
 
 		</nav>
 		</div>
-			<div class="row wrapper border-bottom white-bg page-heading">
+			<div class="row wrapper border-bottom white-bg page-heading hidden">
 				<div class="col-lg-10">
 					<h2>Text Editor</h2>
 					<ol class="breadcrumb">
@@ -158,7 +158,6 @@
 				</div>
 			</div>
 		<div class="wrapper wrapper-content">
-
 			<div class="row">
 				<div class="col-lg-12">
 					{% if session.alert_error %}
@@ -174,8 +173,6 @@
 						</div>
 					{% endif %}
 					{% block content_page %}{% endblock %}
-			<!-- ============ ============ ============  ============  ============  ============  -->
-
 				</div>
 			</div>
 
@@ -214,16 +211,13 @@
 		$(document).keydown(function(event) {
 			// F1
 			if(event.which==112){
-
-				window.open("/assets/template_admin/");
-
+				win = window.open("/assets/template_admin/");
+			//	win.focus();
 				//window.open("/assets/template_admin/",'_blank');
 				//location.href="/assets/template_admin/";
 				return false;
 			}
 		});
 	</script>
-
 </body>
-
 </html>
