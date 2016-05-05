@@ -1,0 +1,161 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* Include LESS variables & mixins */
+@import "variables.less";
+@media (max-width: 991px) {
+
+    .header.header-top-fixed{
+        position: absolute;
+        .dis-n{display: block;}
+    }
+    .header .header-main-fixed{
+        height: 150px; box-shadow: none;
+    }
+    .header .header-main-fixed .header-main-block1{
+        background-color: @color1_5;
+    }
+    .header .header-logo.center{text-align: center;}
+    .home-category .home-category-block .home-category-title{
+        position: relative; margin-top: 30px;
+    } 
+    .header .header-main .header-main-block1 .top-search-form form input{margin-bottom: 15px;}
+    .light.top-header-m-bg{height:210px;}
+    .top-header-m-bg{height:210px;}
+    .light.top-header-bg{height:106px;}
+    .top-header-bg{height:102px;}
+    .second-page-container{
+        padding-top: 260px;
+    }
+    .payment-service{
+        h3{text-align: center;}
+        p{text-align: center;}
+    }
+    .header .header-bg-fixed{height: 150px;
+
+    }
+    .header #container-fixed{
+        margin: 5px 0;   
+    }
+    .main-category-block .main-category-list .with-dropdown .dropdown-menu {
+        position: relative;
+        left: -1px;
+        width: 100%;
+    }
+    .block-chess-banners .block-chess .chess-caption-right{
+        padding: 30px;
+    }
+    .block-chess-banners .block-chess .chess-caption-left{
+        padding: 30px;
+    }
+}
+
+@media (max-width: 767px) { /* Tablet Portrait and Mobile */ 
+
+    .navbar-main .top-icon-block {
+        position: absolute;
+        top: 0;
+        right: 60px;}
+
+    .nav-justified > li > a{
+        margin-bottom: 0;
+    }
+    .menu-inner{background: none !important; padding-top: 10px;}
+    .header.light .header-main .header-main-block1.with-menu .navbar-main .nav > li > a{
+        color: @color2;
+    }
+    .header-main .navbar-collapse{
+        z-index: 999;
+        position: relative;
+        background-color: @color1;
+        h4{
+            color: @color2_9;
+        }
+        .dropdown-menu a{
+            color: @color2_5;
+
+            &:hover{
+                color: @color4;
+                background-color: @color2;
+                padding:0 10px 0 30px;
+            }
+        }
+
+    }
+    .yamm .yamm-content .header-menu h4{color: @color2_9; font-size: 16px;}
+    .fullwidth-services{height: inherit;}
+    .fullwidth-services .fullwidth-service .inner-service{position: relative;}
+    .product-image{margin-bottom: 30px;}
+    .navbar-nav .open .dropdown-menu > li > a {padding:0 20px; line-height: 40px;}
+    .header .navbar-main .dropdown-submenu > .dropdown-menu {position: relative; left: 0;padding-left:30px;}
+    .block-big-product .big-product-inner .big-product-name{font-size: 32px;}
+    .fashion-feature .fashion-feature-title h1{font-size: 60px;}
+    h1{font-size: 32px;}
+    h2{font-size: 28px;}
+    h3{font-size: 26px;}
+    h4{font-size: 22px;}
+    .product.list .figure-hover-overlay  img{width: 100%; max-width: none;}
+    .tab-horizantal{
+        padding-right: 90px;
+        li{float: none;}
+        > li + li{margin: 0;}
+    } 
+    .tab-horizantal.center{
+        padding-right: 0;
+        > li {display: block;}
+    } 
+    .bg-50-r{width: 100%; left: 0;}
+    .bg-50-l{width: 100%;}
+}
+
+@media (max-width: 480px) { /* Mobile */
+
+    .second-page-container{
+        padding-top: 300px;
+    }
+    .header .header-main .top-search-form{
+        width: 100%;
+        text-align: right;
+
+    }
+    .block-big-product .big-product-inner .big-product-name{font-size: 28px;}
+    .fashion-feature .fashion-feature-title h1{font-size: 50px;}
+    h1{font-size: 28px;}
+    h2{font-size: 24px;}
+    h3{font-size: 22px;}
+    h4{font-size: 20px;}
+    .light.top-header-bg{height:146px;}
+    .top-header-bg{height:142px;}
+    .light.top-header-m-bg{height:240px;}
+    .top-header-m-bg{height:240px;}
+}
+
+@media (min-width: 768px) and (max-width: 1200px) { /* Mobile Landscape */
+    .product-image{margin-bottom: 30px;}
+    .modal-dialog{
+        width: 750px;
+    }
+}
+@media (min-width: 1200px) { /* Mobile Landscape */
+    .modal-dialog{
+        width: 1024px;
+    }
+
+}
+@media (min-width: 480px) and (max-width: 767px) { /* Mobile Landscape */
+
+
+}
+
+@media (min-width: 320px) and (max-width: 479px) { /* Mobile Landscape */
+
+
+}
+
+@media (max-width: 319px) { /* Mobile Portrait */
+
+
+}
+
+
+
