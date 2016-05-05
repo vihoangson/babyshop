@@ -1,4 +1,4 @@
-{% extends 'admin.twig' %}
+{% extends 'admincp.twig' %}
 
 {% block title_page %}
     Chào mừng bạn tới shop
@@ -7,46 +7,47 @@
 
 {% block content_page %}
 
-<form action="" method="POST" role="form" enctype="multipart/form-data">
-	<legend>Form title</legend>
+	<form action="" method="POST" role="form" enctype="multipart/form-data">
+		<legend>Form title</legend>
 
-	<div class="form-group">
-		<label for="">name</label>
-		<input value="{{rs.name}}" name="name" type="text" class="form-control" id="" placeholder="Input field">
-	</div>
-	<div class="form-group">
-		<label for="">description</label>
-		<div id="summernote">{{rs.description|raw}}</div>
-		<textarea  name="description" style="display:none"></textarea>
-	</div>
-	<div class="form-group">
-		<label for="">category</label>
-		<input value="{{rs.category}}" name="category" type="text" class="form-control" id="" placeholder="Input field">
-	</div>
-	<div class="form-group">
-		<label for="">price</label>
-		<input value="{{rs.price}}" name="price" type="text" class="form-control" id="" placeholder="Input field">
-	</div>
-	<div class="form-group">
-		<label for="">image</label>
-		<input name="image" type="file" class="form-control" id="" placeholder="Input field">
-	</div>
-	<div class="form-group">
-		<label for="">active</label>
-		<input value="{{rs.active}}" name="active" type="text" class="form-control" id="" placeholder="Input field">
-	</div>
-	<div class="form-group">
-		<label for="">special_content</label>
-		<input value="{{rs.special_content}}" name="special_content" type="text" class="form-control" id="" placeholder="Input field">
-	</div>
-	<div class="form-group">
-		<label for="">special_price</label>
-		<input value="{{rs.special_price}}" name="special_price" type="text" class="form-control" id="" placeholder="Input field">
-	</div>
-	<button type="submit" class="btn btn-primary">Submit</button>
-</form>
+		<div class="form-group">
+			<label for="">name</label>
+			<input value="{{rs.name}}" name="name" type="text" class="form-control" id="" placeholder="Input field">
+		</div>
+		<div class="form-group">
+			<label for="">description</label>
+			<div id="summernote">{{rs.description|raw}}</div>
+			<textarea  name="description" style="display:none"></textarea>
+		</div>
+		<div class="form-group">
+			<label for="">category</label>
+			<input value="{{rs.category}}" name="category" type="text" class="form-control" id="" placeholder="Input field">
+		</div>
+		<div class="form-group">
+			<label for="">price</label>
+			<input value="{{rs.price}}" name="price" type="text" class="form-control" id="" placeholder="Input field">
+		</div>
+		<div class="form-group">
+			<label for="">image</label>
+			<input name="image" type="file" class="form-control" id="" placeholder="Input field">
+		</div>
+		<div class="form-group">
+			<label for="">active</label>
+			<input value="{{rs.active}}" name="active" type="text" class="form-control" id="" placeholder="Input field">
+		</div>
+		<div class="form-group">
+			<label for="">special_content</label>
+			<input value="{{rs.special_content}}" name="special_content" type="text" class="form-control" id="" placeholder="Input field">
+		</div>
+		<div class="form-group">
+			<label for="">special_price</label>
+			<input value="{{rs.special_price}}" name="special_price" type="text" class="form-control" id="" placeholder="Input field">
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
 
 {% endblock %}
+
 {% block custom_css %}
 <link rel="stylesheet" href="/assets/bower_components/summernote/dist/summernote.css">
 {% endblock %}

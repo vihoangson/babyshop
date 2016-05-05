@@ -9,6 +9,7 @@ class MY_Controller extends CI_Controller {
 			'cache' => APPPATH.'cache',
 		];
 		$this->load->library('twig');
+		$this->twig->addGlobal("url_template_admin","/assets/template_admin/");
 
 		//============ ============  ============  ============ 
 		//

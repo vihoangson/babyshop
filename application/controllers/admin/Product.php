@@ -40,12 +40,14 @@ class Product extends Admin {
 				"description"     => $this->input->post('description'),
 				"category"        => $this->input->post('category'),
 				"price"           => $this->input->post('price'),
-				"image"           => $image_name,
 				"active"          => $this->input->post('active'),
 				"special_content" => $this->input->post('special_content'),
 				"special_price"   => $this->input->post('special_price'),
 				"views"           => $this->input->post('views'),
 			];
+			if($image_name){
+				$options["image"] = $image_name;
+			}
 			if(!$id){
 				if($this->products_model->insert($options)){
 					$this->session->set_flashdata('alert_success', 'Đã lưu thành công');
