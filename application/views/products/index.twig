@@ -1,21 +1,229 @@
-{% extends 'app.twig' %}
+{% extends 'frontend.twig' %}
 
 
 {% block title_page %}
-    Chào mừng bạn tới shop
+	Chào mừng bạn tới shop
 {% endblock %}
 
 
 {% block content_page %}
-	{% for item in rs %}
-		<div>
-			<h1>{{item.name}}</h1>
-			<article>{{item.description|raw}}</article>
-			{% if item.product_images %}
-				<img src="{{item.product_images.0.path_img}}" onError="this.src='http://placehold.it/100x100'">
-			{% endif %}
-		</div>
-	{% endfor %}
+
+
+						<div class="col-md-9 col-sm-8">
+							<div class="block-products-modes">
+								<div class="row">
+									<div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
+										<div class="product-view-mode">
+											<a href="products-grid.html" class="active"><i class="fa fa-th-large"></i></a>
+											<a href="products-list.html"><i class="fa fa-th-list"></i></a>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-9 col-md-8 col-lg-8">
+										<div class="row">
+											<div class="col-md-3 col-sm-3 col-md-offset-1">
+												<label class="pull-right">Sort by</label>
+											</div>
+											<div class="col-md-5 col-sm-6">
+												<select name="sort-type" class="form-control">
+													<option value="position:asc">--</option>
+													<option value="price:asc" {% if session.sorttype=="price:asc" %}selected="selected"{% endif %}>Price: Lowest first</option>
+													<option value="price:desc" {% if session.sorttype=="price:desc" %}selected="selected"{% endif %}>Price: Highest first</option>
+													<option value="name:asc" {% if session.sorttype=="name:asc" %}selected="selected"{% endif %}>Product Name: A to Z</option>
+													<option value="name:desc" {% if session.sorttype=="name:desc" %}selected="selected"{% endif %}>Product Name: Z to A</option>
+													<option value="id:asc" {% if session.sorttype=="id:asc" %}selected="selected"{% endif %}>ID Lowest first</option>
+													<option value="id:desc" {% if session.sorttype=="id:desc" %}selected="selected"{% endif %}>In Highest first</option>
+												</select>
+											</div>
+											<div class="col-md-3 col-sm-3">
+												<select name="products-per-page" class="form-control">
+													<option value="10" selected="selected">10</option>
+													<option value="20">20</option>
+													<option value="30">30</option>
+													<option value="100">100</option>
+													<option value="all">All</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="hidden">
+								{% embed "_includes/ele_product.twig" %}
+									{% block title %}{{item.name}}{% endblock %}
+									{% block img %}
+										{% if item.product_images %}
+											<img src="{{item.product_images.0.path_img}}" onError="this.src='http://placehold.it/100x100'">
+										{% endif %}
+									{% endblock %}
+									{% block desc %}{{item.description|raw}}{% endblock %}
+								{% endembed %}
+							</div>
+							<div class="row">
+								{% for item in rs %}
+								<div class="col-md-4 col-sm-6 no-pad">
+									<article class="product">
+										<figure class="figure-hover-overlay rentengle">
+											<a href="#"  class="figure-href"></a>
+											<a href="#" class="product-compare" title="Compare"><i class="ion-ios-shuffle"></i></a>
+											<a href="#" class="product-wishlist" title="Wishlist"><i class="ion-ios-heart-outline"></i></a>
+											<a href="#" class="product-cart" title="Add to Cart"><i class="ion-ios-cart-outline"></i> </a>
+											<img class="img-overlay img-responsive" src="{{item.product_images.0.path_img}}" alt="" title="" onError="this.src='http://placehold.it/200x200 '">
+											<img class="img-responsive" src="{{item.product_images.0.path_img}}" alt="" title="" onError="this.src='http://placehold.it/200x200 '">
+										</figure>
+										<div class="product-caption">
+											<div class="block-name">
+												<a href="#" class="product-name"> {{item.name}}</a>
+												<div class="product-rating">
+													<div class="stars">
+														<span class="star active"></span><span class="star active"></span><span class="star active"></span><span class="star active"></span><span class="star active"></span>
+													</div>
+												</div>
+												<p class="product-price"> {{item.price}} VND</p>
+
+											</div>
+										</div>
+									</article>
+								</div>
+								{% endfor %}
+							</div>
+							<div class="block-pagination">
+								{{pagination|raw}}
+								<ul class="pagination hidden">
+									<li><a href="#">«</a></li>
+									<li><a href="#">1</a></li>
+									<li class="active"><a href="#">2</a></li>
+									<li><a href="#">3</a></li>
+									<li><a href="#">4</a></li>
+									<li><a href="#">»</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-4">
+
+							<nav class="catalog" id="catalog-menu">
+								<div class="panel list-group">
+									<a href="javascript:;" class="list-group-item active">
+										<i class="ion-ios-list-outline"></i> All Products <span class="badge">75</span>
+									</a>
+									<a href="javascript:;" class="list-group-item"  data-toggle="collapse" data-target="#sm1" data-parent="#catalog-menu">
+										<i class="ion-android-contact"></i> Man <span class="badge">51</span>
+									</a>
+									<div id="sm1" class="sublinks collapse">
+										<a class="list-group-item small"><i></i> Shirts <span class="badge">15</span></a>
+										<a class="list-group-item small"><i></i> T-shirts <span class="badge">13</span></a>
+										<a class="list-group-item small"><i></i> Shoes <span class="badge">13</span></a>
+									</div>
+									<a href="javascript:;" class="list-group-item" data-toggle="collapse" data-target="#sm2" data-parent="#catalog-menu">
+										<i class="ion-android-favorite"></i> Woman <span class="badge">32</span>
+									</a>
+									<div id="sm2" class="sublinks collapse">
+										<a class="list-group-item small"><i></i> Dresses <span class="badge">15</span></a>
+										<a class="list-group-item small"><i></i> Bags <span class="badge">5</span></a>
+										<a class="list-group-item small"><i></i> Rings <span class="badge">12</span></a>
+									</div>
+									<a href="javascript:;" class="list-group-item" data-toggle="collapse" data-target="#sm3" data-parent="#catalog-menu">
+										<i class="ion-android-phone-portrait"></i> Smartphones <span class="badge">58</span>
+									</a>
+									<div id="sm3" class="sublinks collapse">
+										<a class="list-group-item small"><i></i> Apple iPhone <span class="badge">12</span></a>
+										<a class="list-group-item small"><i></i> Samsung Galaxy <span class="badge">22</span></a>
+										<a class="list-group-item small"><i></i> Sony Xperia <span class="badge">24</span></a>
+									</div>
+									<a href="javascript:;" class="list-group-item" data-toggle="collapse" data-target="#sm4" data-parent="#catalog-menu">
+										<i class="ion-android-phone-landscape"></i> Tablets <span class="badge">96</span>
+									</a>
+									<div id="sm4" class="sublinks collapse">
+										<a class="list-group-item small"><i></i> Apple iPad <span class="badge">12</span></a>
+										<a class="list-group-item small"><i></i> Samsung Tablet <span class="badge">32</span></a>
+										<a class="list-group-item small"><i></i> Lenevo Tablet <span class="badge">52</span></a>
+									</div>
+									<a href="javascript:;" class="list-group-item">
+										<i class="ion-android-laptop"></i> Laptop <span class="badge">5</span>
+									</a>
+									<a href="javascript:;" class="list-group-item">
+										<i class="ion-android-desktop"></i> Desctop <span class="badge">12</span>
+									</a>
+									<a href="javascript:;" class="list-group-item">
+										<i class="ion-android-watch"></i> Watch <span class="badge">22</span>
+									</a>
+								</div>
+							</nav>
+							<div class="side-article box-border">
+								<div class="widget-block">
+									<h3 class="article-header">Rating</h3> 
+									<select name="size" class="form-control">
+										<option value="1" selected="selected">1 star and higher - 1</option>
+										<option value="2">2 star and higher - 1</option>
+										<option value="3">3 star and higher - 1</option>
+										<option value="4">4 star and higher - 1</option>
+										<option value="5">5 star and higher - 1</option>
+									</select> 
+								</div>
+								<div class="widget-block">
+									<h3 class="article-header">Colors</h3>
+									<ul class="colors clearfix list-unstyled">
+										<li><a href="" data-rel="003d71"></a></li>
+										<li><a href="" data-rel="c42c39"></a></li>
+										<li><a href="" data-rel="f4bc08"></a></li>
+										<li><a href="" data-rel="02882c"></a></li>
+										<li><a href="" data-rel="000000"></a></li>
+										<li><a href="" data-rel="caccce"></a></li>
+										<li><a href="" data-rel="ffffff"></a></li>
+										<li><a href="" data-rel="f9e7b6"></a></li>
+										<li><a href="" data-rel="ef8a07"></a></li>
+										<li><a href="" data-rel="5a433f"></a></li>
+										<li><a href="" data-rel="ff9bb5"></a></li>
+										<li><a href="" data-rel="8c56a9"></a></li>
+									</ul> 
+								</div>
+
+								<div class="widget-block">
+									<h3 class="article-header">Price range</h3>
+									<div class="row pb30">
+										<div class="col-md-6">
+											<div class="input-group">
+												<span class="input-group-addon">$</span>
+												<input type="text" id="price-from" class="form-control" value="50">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="input-group">
+												<span class="input-group-addon">$</span>
+												<input type="text" id="price-to" class="form-control" value="500">
+											</div>
+										</div>
+									</div> 
+									<div class="clearfix  pb20">
+										<div id="price-range">
+										</div>
+									</div>
+								</div>
+
+								<div class="widget-block">
+									<a href="" class="btn-default">Filter</a>&nbsp;&nbsp;&nbsp;
+									<a href="" class="read-more">Clear</a>
+								</div>
+							</div>
+							<div class="header-for-light clearfix">
+								<h3>Tags</h3>                           
+							</div>
+							<div class="widget-block">
+								<ul class="list-unstyled tags">
+									<li><a href="#">android</a></li>
+									<li><a href="#">ios</a></li>
+									<li><a href="#">dark</a></li>
+									<li><a href="#">white</a></li>
+									<li><a href="#">iphone</a></li>
+									<li><a href="#">tablet</a></li>
+									<li><a href="#">mobile</a></li>
+									<li><a href="#">smartphone</a></li>
+									<li><a href="#">top</a></li>
+									<li><a href="#">bestseller</a></li>
+									<li><a href="#">new</a></li>
+								</ul>
+							</div>
+
+						</div>
 {% endblock %}
 
 
@@ -25,5 +233,12 @@
 
 
 {% block custom_js %}
-
+<script>
+	$("[name='products-per-page']").change(function(event) {
+		location.href="/?perpage="+$(this).val();
+	});
+	$("[name='sort-type']").change(function(event) {
+		location.href="/?sorttype="+$(this).val();
+	});
+</script>
 {% endblock %}

@@ -10,6 +10,7 @@ class MY_Controller extends CI_Controller {
 		];
 		$this->load->library('twig');
 		$this->twig->addGlobal("url_template_admin","/assets/template_admin/");
+		$this->twig->addGlobal("url_template_frontend","/assets/template_frontend/shopfine/");
 
 		//============ ============  ============  ============ 
 		//
