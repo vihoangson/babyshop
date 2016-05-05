@@ -43,6 +43,12 @@ class Products extends Frontend {
 
 	}
 
+	public function detail($id=null){
+		$id = 8;
+		$rs = $this->products_model->with_product_images()->get($id);
+		$this->twig->display("products/detail",compact("rs"));
+	}
+
 	private function _set_order(&$modal){
 		if($this->session->userdata('sorttype')){
 			$sorttype = explode(":",$this->session->userdata('sorttype'));
