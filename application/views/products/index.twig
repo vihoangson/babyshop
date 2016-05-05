@@ -1,0 +1,29 @@
+{% extends 'app.twig' %}
+
+
+{% block title_page %}
+    Chào mừng bạn tới shop
+{% endblock %}
+
+
+{% block content_page %}
+	{% for item in rs %}
+		<div>
+			<h1>{{item.name}}</h1>
+			<article>{{item.description|raw}}</article>
+			{% if item.product_images %}
+				<img src="{{item.product_images.0.path_img}}" onError="this.src='http://placehold.it/100x100'">
+			{% endif %}
+		</div>
+	{% endfor %}
+{% endblock %}
+
+
+{% block custom_css %}
+
+{% endblock %}
+
+
+{% block custom_js %}
+
+{% endblock %}
