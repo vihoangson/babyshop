@@ -1,13 +1,273 @@
 {% extends 'admincp.twig' %}
 
 {% block title_page %}
-    Chào mừng bạn tới shop
+	Chào mừng bạn tới shop
 {% endblock %}
 
 
 {% block content_page %}
+		<div class="row wrapper border-bottom white-bg page-heading">
+			<div class="col-lg-10">
+				<h2>Product edit</h2>
+				<ol class="breadcrumb">
+					<li>
+						<a href="index.html">Home</a>
+					</li>
+					<li>
+						<a>E-commerce</a>
+					</li>
+					<li class="active">
+						<strong>Product edit</strong>
+					</li>
+				</ol>
+			</div>
+		</div>
+		<div class="wrapper wrapper-content animated fadeInRight ecommerce">
 
-	<form action="" method="POST" role="form" enctype="multipart/form-data">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="tabs-container">
+							<ul class="nav nav-tabs">
+								<li class="active"><a data-toggle="tab" href="#tab-1"> Product info</a></li>
+								<li class=""><a data-toggle="tab" href="#tab-2"> Data</a></li>
+								<li class=""><a data-toggle="tab" href="#tab-3"> Discount</a></li>
+								<li class=""><a data-toggle="tab" href="#tab-4"> Images</a></li>
+							</ul>
+							<div class="tab-content">
+								<div id="tab-1" class="tab-pane active">
+									<div class="panel-body">
+										<form action="" method="POST" role="form" enctype="multipart/form-data">
+										<fieldset class="form-horizontal">
+											<div class="form-group"><label class="col-sm-2 control-label">Name:</label>
+												<div class="col-sm-10"><input type="text" name="name" class="form-control" placeholder="Product name"></div>
+											</div>
+											<div class="form-group"><label class="col-sm-2 control-label">Price:</label>
+												<div class="col-sm-10"><input type="text" name="price" class="form-control" placeholder="$160.00"></div>
+											</div>
+											<div class="form-group"><label class="col-sm-2 control-label">Description:</label>
+												<div class="col-sm-10">
+													<div id="summernote">
+														<h3>Lorem Ipsum is simply</h3>
+														dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has been the industry's</strong> standard dummy text ever since the 1500s,
+														when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+														when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+														typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
+														<br/>
+													</div>
+													<textarea name="description" class="hidden"></textarea>
+												</div>
+											</div>
+											<div class="form-group"><label class="col-sm-2 control-label">Meta Tag Title:</label>
+												<div class="col-sm-10"><input type="text" class="form-control" placeholder="..."></div>
+											</div>
+											<div class="form-group"><label class="col-sm-2 control-label">Meta Tag Description:</label>
+												<div class="col-sm-10"><input type="text" class="form-control" placeholder="Sheets containing Lorem"></div>
+											</div>
+											<div class="form-group"><label class="col-sm-2 control-label">Meta Tag Keywords:</label>
+												<div class="col-sm-10"><input type="text" class="form-control" placeholder="Lorem, Ipsum, has, been"></div>
+											</div>
+											<button type="submit" class="btn btn-primary">Save</button>
+										</fieldset>
+										</form>
+									</div>
+								</div>
+								<div id="tab-2" class="tab-pane">
+									<div class="panel-body">
+
+										<fieldset class="form-horizontal">
+											<div class="form-group"><label class="col-sm-2 control-label">ID:</label>
+												<div class="col-sm-10"><input type="text" class="form-control" placeholder="543"></div>
+											</div>
+											<div class="form-group"><label class="col-sm-2 control-label">Model:</label>
+												<div class="col-sm-10"><input type="text" class="form-control" placeholder="..."></div>
+											</div>
+											<div class="form-group"><label class="col-sm-2 control-label">Location:</label>
+												<div class="col-sm-10"><input type="text" class="form-control" placeholder="location"></div>
+											</div>
+											<div class="form-group"><label class="col-sm-2 control-label">Tax Class:</label>
+												<div class="col-sm-10">
+													<select class="form-control" >
+														<option>option 1</option>
+														<option>option 2</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group"><label class="col-sm-2 control-label">Quantity:</label>
+												<div class="col-sm-10"><input type="text" class="form-control" placeholder="Quantity"></div>
+											</div>
+											<div class="form-group"><label class="col-sm-2 control-label">Minimum quantity:</label>
+												<div class="col-sm-10"><input type="text" class="form-control" placeholder="2"></div>
+											</div>
+											<div class="form-group"><label class="col-sm-2 control-label">Sort order:</label>
+												<div class="col-sm-10"><input type="text" class="form-control" placeholder="0"></div>
+											</div>
+											<div class="form-group"><label class="col-sm-2 control-label">Status:</label>
+												<div class="col-sm-10">
+													<select class="form-control" >
+														<option>option 1</option>
+														<option>option 2</option>
+													</select>
+												</div>
+											</div>
+										</fieldset>
+
+
+									</div>
+								</div>
+								<div id="tab-3" class="tab-pane">
+									<div class="panel-body">
+
+										<div class="table-responsive">
+											<table class="table table-stripped table-bordered">
+
+												<thead>
+												<tr>
+													<th>
+														Group
+													</th>
+													<th>
+														Quantity
+													</th>
+													<th>
+														Discount
+													</th>
+													<th style="width: 20%">
+														Date start
+													</th>
+													<th style="width: 20%">
+														Date end
+													</th>
+													<th>
+														Actions
+													</th>
+												</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>
+															<select class="form-control" >
+																<option selected>Group 1</option>
+																<option>Group 2</option>
+																<option>Group 3</option>
+																<option>Group 4</option>
+															</select>
+														</td>
+														<td>
+															<input type="text" class="form-control" placeholder="10">
+														</td>
+														<td>
+															<input type="text" class="form-control" placeholder="$10.00">
+														</td>
+														<td>
+															<div class="input-group date">
+																<span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="07/01/2014">
+															</div>
+														</td>
+														<td>
+															<div class="input-group date">
+																<span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="07/01/2014">
+															</div>
+														</td>
+														<td>
+															<button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+														</td>
+													</tr>
+												</tbody>
+
+											</table>
+										</div>
+
+									</div>
+								</div>
+								<div id="tab-4" class="tab-pane">
+									<div class="panel-body">
+
+										<div class="table-responsive">
+											<table class="table table-bordered table-stripped">
+												<thead>
+												<tr>
+													<th>
+														Image preview
+													</th>
+													<th>
+														Image url
+													</th>
+													<th>
+														Sort order
+													</th>
+													<th>
+														Actions
+													</th>
+												</tr>
+												</thead>
+												<tbody>
+													{% if rs.product_images %}
+														{% for key,item in rs.product_images %}
+															<tr>
+																<td>
+																	<img src="{{item.path_img}}">
+																</td>
+																<td>
+																	<input type="text" class="form-control" disabled value="{{item.path_img}}">
+																</td>
+																<td>
+																	<input type="text" class="form-control" value="{{key}}">
+																</td>
+																<td>
+																	<button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+																</td>
+															</tr>
+														{% endfor %}
+													{% endif %}
+												</tbody>
+											</table>
+										</div>
+										<form action="" method="POST" role="form" enctype="multipart/form-data" class="form_img">
+											<input name="image[]" type="file" class="form-control" id="product_imgs" placeholder="Input field" multiple>
+										</form>
+									</div>
+								</div>
+							</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	
+
+{% endblock %}
+
+{% block custom_css %}
+<link rel="stylesheet" href="/assets/bower_components/summernote/dist/summernote.css">
+<link href="{{url_template_admin}}css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+{% endblock %}
+
+{% block custom_js %}
+
+<script src="/assets/bower_components/summernote/dist/summernote.js"></script>
+<script src="{{url_template_admin}}js/plugins/datapicker/bootstrap-datepicker.js"></script>
+<script>
+	$("#product_imgs").change(function(event) {
+		$(this).parents("form").submit();
+	});
+	$("#summernote").summernote();	
+	$("form").submit(function(event) {
+		$("[name='description']").html($("#summernote").summernote("code"));
+	});
+	$('.input-group.date').datepicker({
+		todayBtn: "linked",
+		keyboardNavigation: false,
+		forceParse: false,
+		calendarWeeks: true,
+		autoclose: true
+	});
+</script>
+{% endblock %}
+
+
+{#
+<form action="" method="POST" role="form" enctype="multipart/form-data" class="hidden">
 		<legend>Form title</legend>
 
 		<div class="form-group">
@@ -45,19 +305,4 @@
 		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
-
-{% endblock %}
-
-{% block custom_css %}
-<link rel="stylesheet" href="/assets/bower_components/summernote/dist/summernote.css">
-{% endblock %}
-
-{% block custom_js %}
-<script src="/assets/bower_components/summernote/dist/summernote.js"></script>
-<script>
-	$("#summernote").summernote();
-	$("form").submit(function(event) {
-		$("[name='description']").html($("#summernote").summernote("code"));
-	});
-</script>
-{% endblock %}
+#}

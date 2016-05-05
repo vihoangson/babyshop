@@ -8,6 +8,7 @@ class My_resize
 	public function __construct()
 	{
         $this->ci =& get_instance();
+        $this->ci->load->library('image_lib'); 
 	}
 
 	public function resize($path,$width,$height){
@@ -18,7 +19,8 @@ class My_resize
 		$config['source_image'] = $path;
 		$config['width']        = $width;
 		$config['height']       = $height;
-		$this->ci->load->library('image_lib', $config); 
+		$this->ci->image_lib->clear();
+		$this->ci->image_lib->initialize($config);
 		$this->ci->image_lib->resize();
 	}
 	
