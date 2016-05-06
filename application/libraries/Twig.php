@@ -134,6 +134,10 @@ class Twig
 	public function display($view, $params = [])
 	{
 		$CI =& get_instance();
+		/**
+		 * @created_at [20160505] - Santo add before display addGlobal session variable
+		 * @author Santo
+		 **/
 		$this->addGlobal("session",$_SESSION);
 		$CI->output->set_output($this->render($view, $params));
 	}

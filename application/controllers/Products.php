@@ -5,7 +5,6 @@ class Products extends Frontend {
 
 	public function index()
 	{
-		
 		if($this->input->get('perpage')){
 			$array = array(
 				'perpage' => $this->input->get('perpage')
