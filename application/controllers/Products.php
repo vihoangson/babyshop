@@ -25,7 +25,7 @@ class Products extends Frontend {
 		if($this->session->userdata('perpage')){
 			$perpage= $this->session->userdata('perpage');
 		}else{
-			$perpage= 3;
+			$perpage= 9;
 		}
 
 		$this->products_model->pagination_delimiters = ["<li>","</li>"];

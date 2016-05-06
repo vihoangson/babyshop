@@ -1,0 +1,54 @@
+{% extends 'admincp.twig' %}
+
+{% block title_page %}
+	Chào mừng bạn tới shop
+{% endblock %}
+
+
+{% block content_page %}
+		<div class="row wrapper border-bottom white-bg page-heading">
+			<div class="col-lg-10">
+				<h2>E-commerce product list</h2>
+				<ol class="breadcrumb">
+					<li>
+						<a href="index.html">Home</a>
+					</li>
+					<li>
+						<a>E-commerce</a>
+					</li>
+					<li class="active">
+						<strong>Product list</strong>
+					</li>
+				</ol>
+			</div>
+			<div class="col-lg-2">
+
+			</div>
+		</div>
+		<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+			<form action="" method="POST" role="form" enctype="multipart/form-data">
+				<legend>Form title</legend>
+			
+				<div class="form-group">
+					<label for="">label</label>
+					<input type="file" name="userfile" class="form-control" id="" placeholder="Input field">
+				</div>
+			
+				
+			
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+
+		</div>
+
+
+<!-- ============ ============ ============  ============  ============  ============  -->
+
+{% endblock %}
+{% block custom_css %}
+
+{% endblock %}
+
+{% block custom_js %}
+
+{% endblock %}
