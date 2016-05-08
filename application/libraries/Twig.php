@@ -139,6 +139,7 @@ class Twig
 		 * @author Santo
 		 **/
 		$this->addGlobal("session",$_SESSION);
+		$this->addGlobal("last_query",implode("<br>", $CI->db->queries));
 		$CI->output->set_output($this->render($view, $params));
 	}
 

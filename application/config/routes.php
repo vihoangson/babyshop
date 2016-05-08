@@ -53,3 +53,6 @@ $route['default_controller'] = 'products/index';
 $route['admin'] = 'admin/product/index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['category/(:any)'] = 'products/category/$1';
+$route['tags/(:any)'] = 'products/tags/$1';

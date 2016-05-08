@@ -7,9 +7,7 @@
 
 
 {% block content_page %}
-
 			{% include "_includes/sidebar_product.twig" %}
-
 			<div class="col-md-9 col-sm-8">
 				<div class="block-products-modes">
 					<div class="row">
@@ -112,10 +110,11 @@
 {% block custom_js %}
 <script>
 	$("[name='products-per-page']").change(function(event) {
-		location.href="/?perpage="+$(this).val();
+
+		location.href=location.href.split('?')[0]+"?perpage="+$(this).val();
 	});
 	$("[name='sort-type']").change(function(event) {
-		location.href="/?sorttype="+$(this).val();
+		location.href=location.href.split('?')[0]+"?sorttype="+$(this).val();
 	});
 </script>
 {% endblock %}

@@ -8,7 +8,7 @@ class Import extends Admin {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('product_images_model');
-		$this->array_title_table_product = ["id","name","description","category","price","image","active","special_price"];
+		$this->array_title_table_product = ["id","name","slug","code","tags","description","category","price","image","active","special_price"];
 	}
 
 	public function install_category(){
@@ -34,13 +34,24 @@ class Import extends Admin {
 		$json_string = '
 		{
 			"Man":
-				{"1":"Shirts","2":"T-shirts","3":"Shoes"},
+				{
+					"1":{"name":"Shirts","slug":"shirts"},
+					"2":{"name":"Shirts1","slug":"shirts1"}
+				},
 			"Woman":
-				{"1":"Dresses","2":"Bags","3":"Rings"},
+				{
+					"1":{"name":"Shirts","slug":"shirts3"},
+					"2":{"name":"Shirts1","slug":"shirts4"}
+				},
 			"Smartphones":
-				{"1":"Apple iPhone","2":"Samsung Galaxy","3":"Sony Xperia"},
+				{
+					"1":{"name":"Shirts","slug":"shirts5"},
+					"2":{"name":"Shirts1","slug":"shirts6"}
+				},
 			"Tablets":
-				{"1":"Apple iPad","2":"Samsung Tablet","3":"Lenevo Tablet"},
+				{
+					
+				},
 			"Laptop":
 				{},
 			"Desctop":
@@ -57,10 +68,14 @@ class Import extends Admin {
 			$id = $this->categories->insert($params);
 			foreach ($value as $key_v => $value_v) {
 				$params = [
-					"name"      =>$value_v,
+					"name"      =>$value_v->name,
+					"slug"      =>$value_v->slug,
 					"parent_id" => $id
 				];
-				$this->categories->insert($params);
+				if(!$this->categories->insert($params)){
+					$flag= false;
+					return false;
+				}
 			}
 		}
 		return true;

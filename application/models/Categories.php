@@ -9,6 +9,7 @@ class Categories extends MY_Model {
 		$this->timestamps = FALSE;
 		$this->timestamps_format = 'Y-m-d H:i:s';
 		$this->return_as = 'object';
+		$this->has_many['products'] = ['foreign_model'=>'Products_model','foreign_table'=>'products','foreign_key'=>'category','local_key'=>'id'];
 		parent::__construct();
 	}
 }

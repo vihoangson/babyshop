@@ -1,0 +1,94 @@
+<div class="col-md-3 col-sm-4">
+				<nav class="catalog" id="catalog-menu">
+					<div class="panel list-group">
+						<a href="javascript:;" class="list-group-item active">
+							<i class="ion-ios-list-outline"></i> All Products <span class="badge">75</span>
+						</a>
+						{% for item in categories %}
+							<a href="javascript:;" class="list-group-item"  data-toggle="collapse" data-target="#sm{{item.main.id}}" data-parent="#catalog-menu">
+								<i class="ion-android-contact"></i> {{item.main.name}} <span class="badge">51</span>
+							</a>
+							<div id="sm{{item.main.id}}" class="sublinks collapse">
+								{% for item2 in item.child %}
+									<a class="list-group-item small" href="/category/{{item2.slug}}"><i></i> {{item2.name}} <span class="badge">15</span></a>
+								{% endfor %}
+							</div>
+						{% endfor %}
+					</div>
+				</nav>
+				<div class="side-article box-border">
+					<div class="widget-block">
+						<h3 class="article-header">Rating</h3> 
+						<select name="size" class="form-control">
+							<option value="1" selected="selected">1 star and higher - 1</option>
+							<option value="2">2 star and higher - 1</option>
+							<option value="3">3 star and higher - 1</option>
+							<option value="4">4 star and higher - 1</option>
+							<option value="5">5 star and higher - 1</option>
+						</select> 
+					</div>
+					<div class="widget-block">
+						<h3 class="article-header">Colors</h3>
+						<ul class="colors clearfix list-unstyled">
+							<li><a href="" data-rel="003d71"></a></li>
+							<li><a href="" data-rel="c42c39"></a></li>
+							<li><a href="" data-rel="f4bc08"></a></li>
+							<li><a href="" data-rel="02882c"></a></li>
+							<li><a href="" data-rel="000000"></a></li>
+							<li><a href="" data-rel="caccce"></a></li>
+							<li><a href="" data-rel="ffffff"></a></li>
+							<li><a href="" data-rel="f9e7b6"></a></li>
+							<li><a href="" data-rel="ef8a07"></a></li>
+							<li><a href="" data-rel="5a433f"></a></li>
+							<li><a href="" data-rel="ff9bb5"></a></li>
+							<li><a href="" data-rel="8c56a9"></a></li>
+						</ul> 
+					</div>
+
+					<div class="widget-block">
+						<h3 class="article-header">Price range</h3>
+						<div class="row pb30">
+							<div class="col-md-6">
+								<div class="input-group">
+									<span class="input-group-addon">$</span>
+									<input type="text" id="price-from" class="form-control" value="50">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="input-group">
+									<span class="input-group-addon">$</span>
+									<input type="text" id="price-to" class="form-control" value="500">
+								</div>
+							</div>
+						</div> 
+						<div class="clearfix  pb20">
+							<div id="price-range">
+							</div>
+						</div>
+					</div>
+
+					<div class="widget-block">
+						<a href="" class="btn-default">Filter</a>&nbsp;&nbsp;&nbsp;
+						<a href="" class="read-more">Clear</a>
+					</div>
+				</div>
+				<div class="header-for-light clearfix">
+					<h3>Tags</h3>                           
+				</div>
+				<div class="widget-block">
+					<ul class="list-unstyled tags">
+						<li><a href="/tags/android">android</a></li>
+						<li><a href="/tags/ios">ios</a></li>
+						<li><a href="/tags/dark">dark</a></li>
+						<li><a href="/tags/white">white</a></li>
+						<li><a href="/tags/iphone">iphone</a></li>
+						<li><a href="/tags/tablet">tablet</a></li>
+						<li><a href="/tags/mobile">mobile</a></li>
+						<li><a href="/tags/smartphone">smartphone</a></li>
+						<li><a href="/tags/top">top</a></li>
+						<li><a href="/tags/bestseller">bestseller</a></li>
+						<li><a href="/tags/new">new</a></li>
+					</ul>
+				</div>
+
+			</div>
