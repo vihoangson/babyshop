@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2016 at 04:34 PM
+-- Generation Time: May 08, 2016 at 04:16 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -28,10 +28,30 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
-  `name_romanian` varchar(255) NOT NULL,
-  `name_russian` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(100) NOT NULL,
+  `parent_id` int(255) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `slug`, `parent_id`, `date`) VALUES
+(1, 'Man', '', 0, '2016-05-08 12:59:51'),
+(2, 'Shirts', 'shirts', 1, '2016-05-08 12:59:51'),
+(3, 'Shirts1', 'shirts1', 1, '2016-05-08 12:59:52'),
+(4, 'Woman', '', 0, '2016-05-08 12:59:52'),
+(5, 'Shirts', 'shirts3', 4, '2016-05-08 12:59:52'),
+(6, 'Shirts1', 'shirts4', 4, '2016-05-08 12:59:52'),
+(7, 'Smartphones', '', 0, '2016-05-08 12:59:52'),
+(8, 'Shirts', 'shirts5', 7, '2016-05-08 12:59:52'),
+(9, 'Shirts1', 'shirts6', 7, '2016-05-08 12:59:52'),
+(10, 'Tablets', '', 0, '2016-05-08 12:59:52'),
+(11, 'Laptop', '', 0, '2016-05-08 12:59:52'),
+(12, 'Desctop', '', 0, '2016-05-08 12:59:52'),
+(13, 'Watch', '', 0, '2016-05-08 12:59:52');
 
 -- --------------------------------------------------------
 
@@ -207,6 +227,8 @@ CREATE TABLE `pages` (
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `slug` varchar(600) NOT NULL,
+  `code` varchar(100) NOT NULL,
   `description` mediumtext NOT NULL,
   `category` int(11) NOT NULL,
   `price` double NOT NULL,
@@ -214,6 +236,7 @@ CREATE TABLE `products` (
   `active` int(11) NOT NULL DEFAULT '1',
   `special_content` mediumtext NOT NULL,
   `special_price` double NOT NULL,
+  `tags` text NOT NULL,
   `views` int(11) DEFAULT '0',
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -222,9 +245,20 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `description`, `category`, `price`, `image`, `active`, `special_content`, `special_price`, `views`, `date`) VALUES
-(23, '12124312412433123sssd', '<p>4124124124</p>', 12412, 4124124, '/assets/uploads/2016-05-05__05_42_54.png', 0, '', 0, NULL, '2016-05-04 16:09:31'),
-(24, '1231', '', 23123, 12123, '/assets/uploads/Document.jpg', 0, '', 0, NULL, '2016-05-04 23:07:57');
+INSERT INTO `products` (`id`, `name`, `slug`, `code`, `description`, `category`, `price`, `image`, `active`, `special_content`, `special_price`, `tags`, `views`, `date`) VALUES
+(1, 'Tiêu đề1aasdasd', 'tieu-de-1', 'DK001', '<p>description1</p>', 2, 123000, NULL, 0, '', 50000, 'apple', 0, '2016-05-08 12:59:45'),
+(2, 'Tiêu đề2', 'tieu-de-2', 'DK002', 'description2', 3, 135000, NULL, 1, '', 50000, 'apple', 0, '2016-05-08 12:59:46'),
+(3, 'Tiêu đề3', 'tieu-de-3', 'DK003', 'description3', 4, 147000, NULL, 1, '', 50000, 'iphone', 0, '2016-05-08 12:59:46'),
+(4, 'Tiêu đề1', 'tieu-de-4', 'DK004', 'description4', 2, 159000, NULL, 1, '', 50000, 'white', 0, '2016-05-08 12:59:46'),
+(5, 'Tiêu đề2', 'tieu-de-5', 'DK005', 'description5', 3, 171000, NULL, 1, '', 50000, 'apple', 0, '2016-05-08 12:59:46'),
+(6, 'Tiêu đề3', 'tieu-de-6', 'DK006', 'description6', 4, 183000, NULL, 1, '', 50000, 'iphone', 0, '2016-05-08 12:59:47'),
+(7, 'Tiêu đề1', 'tieu-de-7', 'DK007', 'description7', 2, 195000, NULL, 1, '', 50000, 'iphone', 0, '2016-05-08 12:59:47'),
+(8, 'Tiêu đề2', 'tieu-de-8', 'DK008', 'description8', 3, 207000, NULL, 1, '', 50000, 'iphone', 0, '2016-05-08 12:59:47'),
+(9, 'Tiêu đề3', 'tieu-de-9', 'DK009', 'description9', 4, 219000, NULL, 0, '', 50000, 'apple', 0, '2016-05-08 12:59:47'),
+(10, 'Tiêu đề1', 'tieu-de-10', 'DK010', 'description10', 2, 231000, NULL, 1, '', 50000, 'apple', 0, '2016-05-08 12:59:47'),
+(11, 'Tiêu đề2', 'tieu-de-11', 'DK011', 'description11', 3, 243000, NULL, 1, '', 50000, 'new', 0, '2016-05-08 12:59:47'),
+(12, 'Tiêu đề3', 'tieu-de-12', 'DK012', 'description12', 4, 255000, NULL, 1, '', 50000, 'apple', 0, '2016-05-08 12:59:47'),
+(13, 'Tiêu đề1', 'tieu-de-13', 'DK013', '                                <div id="currency" class="pull-right">\n                                    <a href="" class="currency-title">$ USD <i class="fa fa-angle-down"></i> </a>\n                                    <ul class="list-unstyled currency-item">\n                                        <li><a href="">€ EURO</a></li>\n                                        <li><a href="">£ POUND</a></li>\n                                    </ul>\n                                </div>\n', 5, 267000, NULL, 0, '', 50000, 'new', 0, '2016-05-08 12:59:48');
 
 -- --------------------------------------------------------
 
@@ -243,15 +277,19 @@ CREATE TABLE `product_images` (
 --
 
 INSERT INTO `product_images` (`id`, `product_id`, `path_img`) VALUES
-(2, 23, '/assets/uploads/454XGY49A3.jpg'),
-(3, 23, '/assets/uploads/2R5FAW0KYF.jpg'),
-(4, 23, '/assets/uploads/2XTL98GVVF.jpg'),
-(5, 23, '/assets/uploads/3KVFJ6WC8X.jpg'),
-(6, 23, '/assets/uploads/4J27RNV3KF.jpg'),
-(7, 23, '/assets/uploads/4JAH78D9BD.jpg'),
-(8, 23, '/assets/uploads/4LB01GZ7EL.jpg'),
-(9, 23, '/assets/uploads/4MT2FRBJ88.jpg'),
-(10, 23, '/assets/uploads/6DE7K19C3V.jpg');
+(1, 1, '/assets/uploads/6DE7K19C3V.jpg'),
+(2, 2, '/assets/uploads/454XGY49A3.jpg'),
+(3, 3, '/assets/uploads/2016-05-05__05_42_54.png'),
+(4, 4, '/assets/uploads/2016-05-05__05_46_00.png'),
+(5, 5, '/assets/uploads/Document.jpg'),
+(6, 6, '/assets/uploads/6DE7K19C3V.jpg'),
+(7, 7, '/assets/uploads/454XGY49A3.jpg'),
+(8, 8, '/assets/uploads/2016-05-05__05_42_54.png'),
+(9, 9, '/assets/uploads/2016-05-05__05_46_00.png'),
+(10, 10, '/assets/uploads/Document.jpg'),
+(11, 11, '/assets/uploads/6DE7K19C3V.jpg'),
+(12, 12, '/assets/uploads/454XGY49A3.jpg'),
+(13, 13, '/assets/uploads/2016-05-05__05_42_54.png');
 
 -- --------------------------------------------------------
 
@@ -361,7 +399,8 @@ ALTER TABLE `pages`
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `code` (`code`);
 
 --
 -- Indexes for table `product_images`
@@ -383,7 +422,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `comments`
 --
@@ -433,12 +472,12 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `users`
 --
